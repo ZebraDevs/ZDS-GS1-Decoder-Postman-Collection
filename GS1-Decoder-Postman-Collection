@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "81604e30-9a39-45b6-9fc3-dbdcc065228f",
+		"name": "Zebra GS1 Decoding",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Decode EPC",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "03e53b51-97e1-4f49-ab6f-785d446ea349",
+						"exec": [
+							"// Sample EPC Data.\r",
+							"//pm.environment.set(\"epcHex\", \"160106021833000116022572\"); // Sample SSCC EPC\r",
+							"//pm.environment.set(\"epcHex\", \"331800070187408000000021\"); // Sample GRAI EPC\r",
+							"pm.environment.set(\"epcHex\", \"34191559800000000000A431\"); // Sample GIAI EPC\r",
+							"//pm.environment.set(\"epcHex\", \"30342A5EE81A01C00000002A\"); // Sample GTIN EPC\r",
+							"\r",
+							"// TODO: Uncomment if you don't have BaseUrl environment variable set.\r",
+							"// pm.environment.set(\"BaseUrl\", \"https://test-api1.zebra.com\"); \r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"// TODO: BaseUrl doesn't get compared on line 23\r",
+							"// var BaseUrl = pm.environment.get.BaseUrl;\r",
+							"\r",
+							"// if(BaseUrl === null){\r",
+							"//     pm.environment.set(\"BaseUrl\", \"https://test-api1.zebra.com\"); \r",
+							"// }\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"type": "text",
+						"value": "{{SavannaApiKey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/v2/tools/rfid/gs1/decode/tag/epc/{{epcHex}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"v2",
+						"tools",
+						"rfid",
+						"gs1",
+						"decode",
+						"tag",
+						"epc",
+						"{{epcHex}}"
+					]
+				},
+				"description": "This decodes an EPCHex into an EPC URI and GS1 Element String, and also encodes the EPC Tag URI into the binary content of the EPC memory bank (expressed in hexadecimal)."
+			},
+			"response": []
+		},
+		{
+			"name": "Decode EPC Tag URI",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3fdad439-19c1-4858-8b5e-4c6ce414344f",
+						"exec": [
+							"// Sample EPC Tag URI Data.",
+							"pm.environment.set(\"tagUri\", \"urn:epc:tag:sgtin-96:3.0614141.812345.6789\");",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{SavannaApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/v2/tools/rfid/gs1/decode/tag/uri/{{tagUri}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"v2",
+						"tools",
+						"rfid",
+						"gs1",
+						"decode",
+						"tag",
+						"uri",
+						"{{tagUri}}"
+					]
+				},
+				"description": "This decodes an EPC Tag URI or EPC Raw URI into an EPC URI and GS1 Element String, and also encodes the EPC Tag URI into the binary content of the EPC memory bank (expressed in hexadecimal)."
+			},
+			"response": []
+		},
+		{
+			"name": "Decode User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0789fdb8-de62-4c35-afe2-582da8cce569",
+						"exec": [
+							"// Sample User Data.",
+							"pm.environment.set(\"user\", \"8926465D9771B103DB2000\");",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{SavannaApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/v2/tools/rfid/gs1/decode/user/{{user}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"v2",
+						"tools",
+						"rfid",
+						"gs1",
+						"decode",
+						"user",
+						"{{user}}"
+					]
+				},
+				"description": "This decodes the binary contents of user memory. If there are GS1 data elements present, it will also encode them into a GS1 element string, as found in a GS1-compliant bar code such as GS1 DataMatrix, GS1 DataBar, GS1-128, or GS1 QR Code"
+			},
+			"response": []
+		},
+		{
+			"name": "Decode EPC URI",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3f7fae37-36c5-41c5-b981-d661915a4614",
+						"exec": [
+							"// Sample EPC URI Data.",
+							"pm.environment.set(\"epcUri\", \"urn:epc:id:sgln:0614141.12345.321\");",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "{{SavannaApiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/v2/tools/rfid/gs1/decode/epc/uri/{{epcUri}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"v2",
+						"tools",
+						"rfid",
+						"gs1",
+						"decode",
+						"epc",
+						"uri",
+						"{{epcUri}}"
+					]
+				},
+				"description": "This decodes a pure identity EPC URI a GS1 Element String, and also encodes it into the binary content of the EPC memory bank."
+			},
+			"response": []
+		}
+	]
+}
